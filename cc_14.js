@@ -27,6 +27,14 @@ function createTicketCard(name, description, priorityLevel){
     const resolveButton = document.createElement("button")
     resolveButton.textContent = "Resolve"
 
+    //Task 4 - Implementing Ticket Resolution with Event Bubbling
+
+    //Makes it so that the resolve button removes the ticket card.
+    resolveButton.addEventListener("click", (event) => {
+        event.stopPropagation()
+        ticketCard.parentNode.removeChild(ticketCard)
+    })
+
     //Adding the new elements to the card.
     ticketCard.appendChild(title)
     ticketCard.appendChild(explanation)
@@ -53,4 +61,11 @@ const highUrgencyTicketArray = Array.from(highUrgencyTicketNodeList)
 //Using for each to make all high priority tickets be highlighted red.
 highUrgencyTicketArray.forEach((card) => {
     card.style.backgroundColor = "red"
+})
+
+//Task 4 - Continued
+
+//Adds an event listener so that when a ticket is clicked, not on tbe resolve button, there is a console message saying a ticket has been clicked.
+ticketcontainer1.addEventListener("click", () => {
+    console.log("Ticket Clicked")
 })
