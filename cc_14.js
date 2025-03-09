@@ -40,3 +40,17 @@ function createTicketCard(name, description, priorityLevel){
 ticketcontainer1.appendChild(createTicketCard("Jordan Love", "Website Crashed.", "Medium"))
 ticketcontainer1.appendChild(createTicketCard("Josh Jacobs", "Virus Infected my PC from website.", "High"))
 ticketcontainer1.appendChild(createTicketCard("Christian Watson", "Need to return product.", "Low"))
+ticketcontainer1.appendChild(createTicketCard("Zach Tom", "Website crashed my entire PC.", "High"))
+
+//Task 3 - Converting NodeLists to Array for Bulk Updating
+
+//Creating a node list for all high priority tickets.
+const highUrgencyTicketNodeList = document.querySelectorAll(".High")
+
+//Converting the node list into an array.
+const highUrgencyTicketArray = Array.from(highUrgencyTicketNodeList)
+
+//Using for each to make all high priority tickets be highlighted red.
+highUrgencyTicketArray.forEach((card) => {
+    card.style.backgroundColor = "red"
+})
