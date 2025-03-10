@@ -35,11 +35,66 @@ function createTicketCard(name, description, priorityLevel){
         ticketCard.parentNode.removeChild(ticketCard)
     })
 
+    //Task 5 - Inline Editing of Support Tickets
+
+    //Creating a button that will serve as a way to edit a name and position of an employee.
+    const editButton = document.createElement("button")
+    editButton.textContent = "Edit Details"
+
+    //Adding an event listener for the edit button to allow for editing to commmence.
+    editButton.addEventListener("click", (event) => {
+        event.stopPropagation()
+
+        //Creating a title input to allow for typing.
+        const  titleInput = document.createElement("input")
+        titleInput.value = title.textContent
+
+        //Creating a description input to allow for typing.
+        const explanationInput = document.createElement("input")
+        explanationInput.value = explanation.textContent
+
+        //Creating an urgency input to allow for typing.
+        const urgencyInput = document.createElement("input")
+        urgencyInput.value = urgency.textContent
+
+        //Creating a save button that allows for all changes to be saved to the employee card.
+        const saveButton = document.createElement("button")
+        saveButton.textContent = "Save"
+
+        //Replacing the title and description with the input fields when the edit button is pressed.
+        ticketCard.replaceChild(titleInput, title)
+        ticketCard.replaceChild(explanationInput, explanation)
+        ticketCard.replaceChild(urgencyInput, urgency)
+        
+
+        //Adding the save button to the employee card when edit is pressed.
+        ticketCard.appendChild(saveButton)
+
+        //Adding an event listener to the save button to allow for the typed content to override the original.
+        saveButton.addEventListener("click", (event) => {
+            event.stopPropagation()
+
+            //Setting the title and description equal to whatever is typed in the input fields.
+            title.textContent = titleInput.value
+            explanation.textContent = explanationInput.value
+            urgency.textContent = urgencyInput.value
+
+            //Replacing the input feilds with static text, now with the new typed text.
+            ticketCard.replaceChild(title, titleInput)
+            ticketCard.replaceChild(explanation, explanationInput)
+            ticketCard.replaceChild(urgency, urgencyInput)
+
+            //Removes the save button after pressing it.
+            ticketCard.removeChild(saveButton)
+        })
+    })
+
     //Adding the new elements to the card.
     ticketCard.appendChild(title)
     ticketCard.appendChild(explanation)
     ticketCard.appendChild(urgency)
     ticketCard.appendChild(resolveButton)
+    ticketCard.appendChild(editButton)
 
     return ticketCard
 }
